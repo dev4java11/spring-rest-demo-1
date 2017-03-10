@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="STOREAPPSERVER">
+		<class>pe.com.alliance.storeapp.server.domain.Categoria</class>
+		<class>pe.com.alliance.storeapp.server.domain.Cliente</class>
+		<class>pe.com.alliance.storeapp.server.domain.Detallefactura</class>
+		<class>pe.com.alliance.storeapp.server.domain.Empleado</class>
+		<class>pe.com.alliance.storeapp.server.domain.Estadoproducto</class>
+		<class>pe.com.alliance.storeapp.server.domain.Factura</class>
+		<class>pe.com.alliance.storeapp.server.domain.Log</class>
+		<class>pe.com.alliance.storeapp.server.domain.Modopago</class>
+		<class>pe.com.alliance.storeapp.server.domain.Persona</class>
+		<class>pe.com.alliance.storeapp.server.domain.PersonaUsuario</class>
+		<class>pe.com.alliance.storeapp.server.domain.Producto</class>
+		<class>pe.com.alliance.storeapp.server.domain.Rol</class>
+		<class>pe.com.alliance.storeapp.server.domain.Tienda</class>
+		<class>pe.com.alliance.storeapp.server.domain.Usuario</class>
+		<class>pe.com.alliance.storeapp.server.domain.UsuarioRol</class>
+	</persistence-unit>
+</persistence>
