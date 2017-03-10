@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template/layout">
+	
+	<div layout:fragment="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-info" role="alert" th:if="${formMsg eq 'success'}">
+						<span th:text="#{product.form.success}">Success</span>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true" >&times;</span>
+						</button>
+					</div>
+					<div class="alert alert-danger" role="alert" th:if="${formMsg eq 'error'}">
+						<span th:text="#{product.form.error}">Error</span>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true" >&times;</span>
+						</button>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-default panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title" th:text="#{product.form.title}">Panel
+								title</h3>
+						</div>
+						<div class="panel-body">
+							<form action="#" th:action="@{/products/register.htm}" th:object="${productRegister}" method="post">
+								<div class="form-group">
+									<label for="productNameForm" th:text="#{product.Name}">Name</label>
+									<input id="productNameForm" th:field="*{nameProductModel}"
+										type="text" class="form-control" />
+									<h4><span class="label label-danger" th:if="${#fields.hasErrors('nameProductModel')}" th:errors="*{nameProductModel}" >Error for name of product</span></h4>
+								</div>
+								<div class="form-group">
+									<label for="productLineForm" th:text="#{product.Line}">Line</label>
+									<select id="productLineForm" class="form-control" th:field="*{lineProductModel}">
+										<option th:value="${line}" th:text="${line}"
+											th:each="line : ${lines}">option</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="productScaleForm" th:text="#{product.Scale}">Scale</label>
+									<div class="input-group">
+										<div class="input-group-addon">1:</div>
+										<input id="productScaleForm" th:field="*{formScaleProductModel}"
+											type="text" class="form-control" />
+									</div>
+									<h4><span class="label label-danger" th:if="${#fields.hasErrors('formScaleProductModel')}" th:errors="*{formScaleProductModel}" >Error for scale of product</span></h4>
+								</div>
+								<div class="form-group">
+									<label for="productVendorForm" th:text="#{product.Vendor}">Vendor</label>
+									<input id="productVendorForm" th:field="*{vendorProductModel}"
+										type="text" class="form-control" />
+									<h4><span class="label label-danger" th:if="${#fields.hasErrors('vendorProductModel')}" th:errors="*{vendorProductModel}" >Error for vendor of product</span></h4>
+								</div>
+								<div class="form-group">
+									<label for="productStockForm" th:text="#{product.Stock}">Stock</label>
+									<input id="productStockForm" th:field="*{stockProductModel}"
+										type="text" class="form-control" />
+									<h4><span class="label label-danger" th:if="${#fields.hasErrors('stockProductModel')}" th:errors="*{stockProductModel}" >Error for stock of product</span></h4>
+								</div>
+								<div class="form-group">
+									<label for="productPriceForm" th:text="#{product.Price}">Price</label>
+									<input id="productPriceForm" th:field="*{priceProductModel}" type="text"
+										class="form-control" />
+									<h4><span class="label label-danger" th:if="${#fields.hasErrors('priceProductModel')}" th:errors="*{priceProductModel}" >Error for price of product</span></h4>
+								</div>
+								<div class="form-group">
+									<label for="productMSRPForm" th:text="#{product.MSRP}">MSRP</label>
+									<input id="productMSRPForm" th:field="*{msrpProductModel}" type="text"
+										class="form-control" />
+									<h4><span class="label label-danger" th:if="${#fields.hasErrors('msrpProductModel')}" th:errors="*{msrpProductModel}" >Error for name of product</span></h4>
+								</div>
+								<div class="form-group">
+									<label for="productDescriptionForm"
+										th:text="#{product.Description}">Description</label>
+									<textarea id="productDescriptionForm" rows="4"
+										class="form-control" th:field="*{descriptionProductModel}">Description of Product</textarea>
+									<h4><span class="label label-danger" th:if="${#fields.hasErrors('descriptionProductModel')}" th:errors="*{descriptionProductModel}" >Error for name of product</span></h4>
+								</div>
+								<button type="submit" class="btn btn-primary"
+									th:text="#{product.register}">Register</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<h3 th:text="#{product.list}">Product List</h3>
+				</div>
+				<div class="col-md-8">
+					<nav>
+						<ul class="pagination" th:each="page_count : ${#numbers.sequence(0, pages-1, 1)}">
+							<li><a href="page" th:text="${page_count+1}" 
+								th:href="@{/products/productlist.htm(page_var=${page_count})}">page</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover table-select">
+				<tr class="info">
+					<th th:text="'N'">Number</th>
+					<th th:id="rowCode" th:text="#{product.Code}">Code</th>
+					<th th:text="#{product.Name}">Name</th>
+					<th th:text="#{product.Line}">Line</th>
+					<th th:text="#{product.Scale}">Scale</th>
+					<!-- 					<th th:text="#{product.Vendor}">Vendor</th> -->
+					<!-- 					<th th:text="#{product.Description}">Description</th> -->
+					<th th:text="#{product.Stock}">Stock</th>
+					<th th:text="#{product.Price}">Price</th>
+					<th th:text="#{product.MSRP}">MSRP</th>
+					<th th:text="'Options'">Options</th>
+				</tr>
+				<tr th:each="productTable : ${products}">
+					<td th:text="${(pageActual*numPerPage)+productTable.numGenericProductModel+1}">Number</td>
+					<td th:id="${productTable.codeProductModel}" th:class="row-select" th:text="${productTable.codeProductModel}">Code</td>
+					<td th:text="${productTable.nameProductModel}">Name</td>
+					<td th:text="${productTable.lineProductModel}">Line</td>
+					<td th:text="${productTable.scaleProductModel}">Scale</td>
+					<td th:text="${productTable.stockProductModel}">Stock</td>
+					<td th:text="${productTable.priceProductModel}">Price</td>
+					<td th:text="${productTable.msrpProductModel}">MSRP</td>
+					<td>
+						<a class="btn btn-default" aria-label="Left Align" th:title="'Edit'" th:href="@{/products/{productNum}/{productId}/edit.htm(productId=${productTable.codeProductModel}, productNum=${(pageActual*numPerPage)+productTable.numGenericProductModel+1})}">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						</a>
+						<button type="button" class="btn btn-default delete-product" aria-label="Right Align" th:title="'Delete'" data-toggle="modal" data-target="#modalDeleteProduct" data-product="${productTable.codeProductModel}">
+							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+						</button>
+							
+						<div class="modal fade" id="modalDeleteProduct" tabindex="-1" role="dialog" aria-labelledby="modalLabelTitle">
+						  	<div class="modal-dialog modal-sm" role="document">
+						    	<form th:action="@{/products/deleteProduct.htm}" th:method="post" >
+							    	<div class="modal-content">
+								      	<div class="modal-header">
+								        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        	<h3 class="modal-title" id="modalLabelTitle" th:text="'Delete Product'"></h3>
+								      	</div>
+								      	<div class="modal-body">
+								      		<div class="form-group">
+								      			<h4 th:text="'Do you want delete this product ?' + ${productTable.codeProductModel}">Delete Product</h4>
+								        	</div>
+								      	</div>
+								      	<div class="modal-footer">
+								        	<button type="submit" class="btn btn-success" th:text="'Yes'">Yes</button>
+								        	<button type="button" class="btn btn-danger" data-dismiss="modal" th:text="'No'" >No</button>
+								      	</div>
+							    	</div>
+						    	</form>
+						  </div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</html>

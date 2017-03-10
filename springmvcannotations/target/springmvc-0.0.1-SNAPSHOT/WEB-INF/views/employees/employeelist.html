@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template/layout">
+<body>
+	<div layout:fragment="content">
+		<div class="table-responsive">
+			<div class="row">
+				<div class="col-md-10"> 
+					<h3 th:text="'Employee List'">Employee List</h3>
+				</div>
+				<div class="col-md-2">
+					<nav>
+						<ul class="pagination" th:each="page_count : ${#numbers.sequence(0, totalPages-1, 1)}">
+							<li>
+								<a th:href="@{/employees/employeelist.htm(page_var=${page_count})}" th:text="${page_count+1}">page</a>
+							</li>
+						</ul>
+					</nav>
+				</div>	
+			</div>
+		
+			<table class="table table-bordered table-hover table-select">
+				<tr class="info">
+					<th th:text="'N'">Number</th>
+					<th th:text="#{employee.Code}">Code</th>
+					<th th:text="#{employee.CompleteName}">Complete Names</th>
+					<th th:text="#{employee.Email}">Email</th>
+					<th th:text="#{employee.Title}">Title</th>
+					<th th:text="#{employee.Office}">Office</th>
+					<th th:text="#{employee.Country}">Country</th>
+					<th th:text="'Options'">Options</th>
+				</tr>
+				<tr th:each="employeeTable : ${employees}">
+					<td th:text="${employeeTable.employeeModel.numGeneralEmployeeModel+1}">Number</td>
+					<td th:text="${employeeTable.employeeModel.idEmployeeModel}">Code</td>
+					<td th:text="${employeeTable.employeeModel.lastNameEmployeeModel+', '+employeeTable.employeeModel.firstNameEmployeeModel}">Complete Names</td>
+					<td th:text="${employeeTable.employeeModel.emailEmployeeModel}">Email</td>
+					<td th:text="${employeeTable.employeeModel.jobTitleEmployeeModel}">Title</td>
+					<td th:text="${employeeTable.officeModel.addressLine1OfficeModel+' - '+employeeTable.officeModel.cityOfficeModel}">Office</td>
+					<td th:text="${employeeTable.officeModel.countryOfficeModel}">Country</td>
+					<td>
+						<a th:href="@{/employees/{employee_id}/employee_edit.htm(employee_id=${employeeTable.employeeModel.idEmployeeModel})}" title="See Employee" class="btn btn-default">
+							<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

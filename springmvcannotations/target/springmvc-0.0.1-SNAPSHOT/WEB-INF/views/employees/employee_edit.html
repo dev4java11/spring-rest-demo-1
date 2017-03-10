@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template/layout">
+<body>
+	<div layout:fragment="content">
+		<div class="container container-fluid">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<form th:object="${employee}">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<div class="col-md-offset-4">
+								<h4><label class="control-label" th:text="'Identifier of Employee: '+${#object.employeeModel.idEmployeeModel}">idEmployee</label></h4>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="form-group" >
+								<input id="idFormEmployee" type="hidden" th:name="idEmployeeModel" th:value="${#object.employeeModel.idEmployeeModel}" />
+								<input id="idFormOffice" type="hidden" th:name="officeCodeOfficeModel" th:value="${#object.officeModel.officeCodeOfficeModel}"/>
+							</div>
+							<div class="form-horizontal form-inline">
+								<div class="form-group">
+									<label for="nameFormEmployee" class="col-sm-offset-1 col-sm-3 control-label" th:text="'First Name: '">First Name</label>
+									<div class="col-sm-7">
+										<input id="nameFormEmployee" class="form-control" th:placeholder="'First Name'" type="text" th:name="firstNameEmployeeModel" th:value="${#object.employeeModel.firstNameEmployeeModel}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="lastNameFormEmployee" class="col-sm-offset-1 col-sm-3 control-label" th:text="'Last Name: '">Last Name</label>
+									<div class="col-sm-7">
+										<input id="lastNameFormEmployee" class="form-control" th:placeholder="'Last Name'" type="text" th:name="lastNameEmployeeModel" th:value="${#object.employeeModel.lastNameEmployeeModel}" />
+									</div>
+								</div>
+							</div>
+							<br/><br/>
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="emailFormEmployee" class="col-sm-2 control-label" th:text="'Email: '">Email</label>
+									<div class="col-sm-9">
+										<input id="emailFormEmployee" class="form-control" th:placeholder="'example@classicmodelcars.com'" type="text" th:name="emailEmployeeModel" th:value="${#object.employeeModel.emailEmployeeModel}" />
+									</div>
+								</div>
+							</div>
+							<br/>
+							<div class="form-horizontal form-inline">
+								<div class="form-group">
+									<label for="extensionFormEmployee" class="col-sm-offset-2 col-sm-3 control-label" th:text="'Extension: '" >Extension</label>
+									<div class="col-sm-7">
+										<input id="extensionFormEmployee" class="form-control" th:placeholder="'Extension'" type="text" th:name="extensionEmployeeModel" th:value="${#object.employeeModel.extensionEmployeeModel}"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="jobTitleFormEmployee" class="col-sm-offset-1 col-sm-3 control-label" th:text="'Title: '" >Title:</label>
+									<div class="col-sm-8">	
+										<input id="jobTitleFormEmployee" class="form-control" th:placeholder="'Job Title'" type="text" th:name="jobTitleEmployeeModel" th:value="${#object.employeeModel.jobTitleEmployeeModel}"/>
+									</div>
+								</div>
+							</div>
+							<br/><br/>
+							<div class="form-horizontal form-inline">
+								<div class="form-group">
+									<label for="phoneFormOffice" class="col-sm-offset-2 col-sm-3 control-label" th:text="'Phone: '" >Phone:</label>
+									<div class="col-sm-7">
+										<input id="phoneFormOffice" class="form-control" th:placeholder="'Phone'" type="text" th:name="phoneOfficeModel" th:value="${#object.officeModel.phoneOfficeModel}"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="countryFormOffice" class="col-sm-offset-2 col-sm-3 control-label" th:text="'Country: '" >Country:</label>
+									<div class="col-sm-7">
+										<input id="countryFormOffice" class="form-control" th:placeholder="'Country'" type="text" th:name="countryOfficeModel" th:value="${#object.officeModel.countryOfficeModel}"/>
+									</div>
+								</div>
+							</div>
+							<br/><br/>
+							<div class="form-horizontal form-inline">
+								<div class="form-group">
+									<label for="territoryFormOffice" class="col-sm-offset-2 col-sm-3 control-label" th:text="'Territory: '" >Territory:</label>
+									<div class="col-sm-7">
+										<input id="territoryFormOffice" class="form-control" th:placeholder="'Territory'" type="text" th:name="territoryOfficeModel" th:value="${#object.officeModel.territoryOfficeModel}"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="cityFormOffice" class="col-sm-offset-2 col-sm-3 control-label" th:text="'City: '" >City:</label>
+									<div class="col-sm-7">
+										<input id="cityFormOffice" class="form-control" th:placeholder="'City'" type="text" th:name="cityOfficeModel" th:value="${#object.officeModel.cityOfficeModel}"/>
+									</div>
+								</div>
+							</div>
+							<br/><br/>
+							<div class="form-horizontal form-inline">
+								<div class="form-group">
+									<label for="stateFormOffice" class="col-sm-offset-2 col-sm-3 control-label" th:text="'State: '" >State:</label>
+									<div class="col-sm-7">
+										<input id="stateFormOffice" class="form-control" th:placeholder="'State'" type="text" th:name="stateOfficeModel" th:value="${#object.officeModel.stateOfficeModel}"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="postalCodeFormOffice" class="col-sm-offset-2 col-sm-3 control-label" th:text="'Postal: '" >Postal:</label>
+									<div class="col-sm-7">
+										<input id="postalCodeFormOffice" class="form-control" th:placeholder="'Postal Code'" type="text" th:name="postalCodeOfficeModel" th:value="${#object.officeModel.postalCodeOfficeModel}"/>
+									</div>
+								</div>
+							</div>
+							<br/><br/>
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="addressLine1FormOffice" class="col-sm-3 control-label" th:text="'Address Line 1: '" >Address Line 1:</label>
+									<div class="col-sm-8">
+										<input id="addressLine1FormOffice" class="form-control" th:placeholder="'Address Line 1'" type="text" th:name="addressLine1OfficeModel" th:value="${#object.officeModel.addressLine1OfficeModel}"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="addressLine2FormOffice" class="col-sm-3 control-label" th:text="'Address Line 2: '" >Address Line 2:</label>
+									<div class="col-sm-8">
+										<input id="addressLine2FormOffice" class="form-control" th:placeholder="'Address Line 2'" type="text" th:name="addressLine2OfficeModel" th:value="${#object.officeModel.addressLine2OfficeModel}"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-horizontal" >
+								<div class="form-group">
+									<label for="bossForm" class="col-sm-3 control-label" th:text="'Boss: '">Boss:</label>
+									<div class="col-sm-8">
+										<input id="bossFormNotNull" class="form-control" th:placeholder="'Boss of Employee'" type="text" th:disabled="true" th:value="${boss.employeeModel.lastNameEmployeeModel+', '+boss.employeeModel.firstNameEmployeeModel}" th:if="${boss.employeeModel} != null"/>
+										<input id="bossFormEqNull" class="form-control" th:placeholder="'Boss of Employee'" type="text" th:disabled="true" th:if="${boss.employeeModel} == null"/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<div class="form-inline form-horizontal">
+								<div class="form-group">
+									<div class="col-sm-offset-8 col-sm-4">
+										<input type="submit" class="btn btn-primary btn-lg" th:value="'Aceptar'"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-3 col-sm-4">
+										<a class="btn btn-success btn-lg" th:href="@{/employees/employeelist.htm(page_var=${0})}" th:value="Volver">Volver</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
